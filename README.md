@@ -86,13 +86,21 @@ replacement and generated factory images under ASan/UBSan).
 
 ## Versioned distribution
 
-This directory is the source of truth and should be committed to its own repository.
+The public source repository is [78/bundlefs](https://github.com/78/bundlefs).
 Before enabling consumer CI, configure `BUNDLEFS_REPOSITORY` (owner/repository) and
 `BUNDLEFS_REF` (fixed commit or release tag) in both GitHub repositories. Their firmware
 workflows check out that revision beside the consumer. A symlink alone does not download code.
 
+The ESP Component Registry package is `78/bundlefs`, version `0.2.0`. To use it without
+a local checkout, remove the consumer's `components/bundlefs` symlink and add a dependency:
+
+```yaml
+dependencies:
+  78/bundlefs: "0.2.0"
+```
+
 `idf_component.yml`, this README and `LICENSE` form the Registry package. Validate locally
-with `compote component pack --name bundlefs`; packing does not publish. Once a namespace
-and release repository exist, publish explicitly, replace local symlinks in release consumers
-with a versioned manifest dependency, and commit their dependency locks according to project policy.
+with `compote component pack --name bundlefs`; packing does not publish. Maintainers publish
+from this directory with `compote component upload --namespace 78 --name bundlefs`.
+Handle generated dependency locks according to the consuming project's policy.
 Do not ship local build outputs or consumer-specific assets in the component archive.

@@ -1,6 +1,14 @@
 version: "0.2.0"
 description: "Copy-on-write BundleFS v3 storage and Bundle v1 package reader with ESP-IDF NOR flash and MMU adapters"
 license: "Apache-2.0"
+url: "https://github.com/78/bundlefs"
+repository: "https://github.com/78/bundlefs.git"
+files:
+  exclude:
+    - "dist/**"
+    - "build/**"
+    - "**/__pycache__/**"
+    - "**/*.pyc"
 dependencies:
   idf: ">=6.0,<7.0"
   espressif/cjson: "^1.7.19"
